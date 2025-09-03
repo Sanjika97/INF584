@@ -18,7 +18,7 @@ namespace LineUp
                 Rows = Columns;
             }
 
-            WinCondition = (int)Math.Ceiling(Rows * Columns * 0.1);
+            WinCondition = (int)Math.Floor(Rows * Columns * 0.1);
         }
 
         public void Display() {
