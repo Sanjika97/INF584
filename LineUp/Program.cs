@@ -1,27 +1,47 @@
-﻿class Program
+﻿using System;
+
+namespace LineUp
 {
-    static void Main(string[] args)
+    class Program
     {
-        //game
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to LineUp");
+
+            Grid grid = new Grid(6, 7);
+            grid.Display();
+
+            Grid customGrid = new Grid(10, 10);
+            customGrid.Display();
+
+            Grid smallGrid = new Grid(4, 5);
+            smallGrid.Display();
+
+            Grid invalidGrid = new Grid(8, 5);
+            invalidGrid.Display();
+
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
+        }
     }
-}
 
-class Game
-{
+    // class Game
+    // {
 
-}
+    // }
 
-class Player
-{
+    // class Player
+    // {
 
-}
+    // }
 
-class Grid
-{
+    // class Grid
+    // {
 
-}
+    // }
 
-class Disc
-{
-    
+    // class Disc
+    // {
+
+    // }
 }

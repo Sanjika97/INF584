@@ -1,0 +1,15 @@
+D:\INF584\INF584\LineUp\bin\Debug\net8.0\LineUp.exe
+D:\INF584\INF584\LineUp\bin\Debug\net8.0\LineUp.deps.json
+D:\INF584\INF584\LineUp\bin\Debug\net8.0\LineUp.runtimeconfig.json
+D:\INF584\INF584\LineUp\bin\Debug\net8.0\LineUp.dll
+D:\INF584\INF584\LineUp\bin\Debug\net8.0\LineUp.pdb
+D:\INF584\INF584\LineUp\obj\Debug\net8.0\LineUp.GeneratedMSBuildEditorConfig.editorconfig
+D:\INF584\INF584\LineUp\obj\Debug\net8.0\LineUp.AssemblyInfoInputs.cache
+D:\INF584\INF584\LineUp\obj\Debug\net8.0\LineUp.AssemblyInfo.cs
+D:\INF584\INF584\LineUp\obj\Debug\net8.0\LineUp.csproj.CoreCompileInputs.cache
+D:\INF584\INF584\LineUp\obj\Debug\net8.0\LineUp.sourcelink.json
+D:\INF584\INF584\LineUp\obj\Debug\net8.0\LineUp.dll
+D:\INF584\INF584\LineUp\obj\Debug\net8.0\refint\LineUp.dll
+D:\INF584\INF584\LineUp\obj\Debug\net8.0\LineUp.pdb
+D:\INF584\INF584\LineUp\obj\Debug\net8.0\LineUp.genruntimeconfig.cache
+D:\INF584\INF584\LineUp\obj\Debug\net8.0\ref\LineUp.dll

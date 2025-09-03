@@ -14,22 +14,25 @@ namespace LineUp
 
             if (Rows > Columns)
             {
+                Console.WriteLine("Cannot have more rows than columns. Adjusting grid to make it square.");
                 Rows = Columns;
             }
 
-            WinCondition = (int)Math.Floor(Rows * Columns * 0.1);
+            WinCondition = (int)Math.Ceiling(Rows * Columns * 0.1);
         }
 
         public void Display() {
+
             for (int row = 0; row < Rows; row++)
             {
 
+                Console.Write("  ");
                 for (int col = 0; col < Columns; col++)
                 {
-                    Console.Write("|");
-                    Console.Write("  ");
-                    
+                    Console.Write("|  ");
+                    //empty cell or disc
                 }
+                Console.WriteLine("|");
             }
 
             Console.WriteLine($"\nWin condition: Connect {WinCondition} discs");
