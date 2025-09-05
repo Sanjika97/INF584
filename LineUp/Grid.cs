@@ -7,11 +7,12 @@ namespace LineUp
         public int Rows { get; private set; }
         public int Columns { get; private set; }
         public int WinCondition { get; private set; }
+        private Disc[,] grid;
         public Grid(int rows, int columns)
         {
             Rows = Math.Max(rows, 6);
             Columns = Math.Max(columns, 7);
-
+            grid = new Disc[Rows, Columns];
             if (Rows > Columns)
             {
                 Console.WriteLine("Cannot have more rows than columns. Adjusting grid to make it square.");
