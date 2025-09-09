@@ -6,7 +6,7 @@ namespace LineUp
     {
         public int Rows { get; private set; }
         public int Columns { get; private set; }
-        public int WinCondition { get; private set; }
+        public int WinConditionDisc { get; private set; }
         private Disc[,] grid;
         public Grid(int rows, int columns)
         {
@@ -20,7 +20,7 @@ namespace LineUp
                 Rows = Columns;
             }
 
-            WinCondition = (int)Math.Floor(Rows * Columns * 0.1);
+            WinConditionDisc = (int)Math.Floor(Rows * Columns * 0.1);
         }
 
         public int GetLowestEmptyRow(int column)
@@ -66,6 +66,55 @@ namespace LineUp
             }
             return true;
         }
+        
+        public bool EndCondition()
+        {
+            int winLength = WinConditionDisc;
+            
+            for (int row = 0; row < Rows; row++)
+            {
+                for (int col = 0; col < Columns; col++)
+                {
+                    if (grid[row, col] != null) 
+                    {
+                        int player = grid[row, col].PlayerNumber;
+                        
+                        if (CheckDirection(row, col, 1, 0, player, winLength) ||   
+                            CheckDirection(row, col, 0, 1, player, winLength) ||   
+                            CheckDirection(row, col, 1, 1, player, winLength) ||  
+                            CheckDirection(row, col, 1, -1, player, winLength))   
+                        {
+                            return true; 
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool CheckDirection(int startRow, int startCol, int deltaRow, int deltaCol, int player, int winLength)
+        {
+            int count = 0;
+            
+            for (int i = 0; i < winLength; i++)
+            {
+                int row = startRow + (i * deltaRow);
+                int col = startCol + (i * deltaCol);
+                
+                // Check if position is valid and has the same player's disc
+                if (row >= 0 && row < Rows && col >= 0 && col < Columns &&
+                    grid[row, col] != null && grid[row, col].PlayerNumber == player)
+                {
+                    count++;
+                }
+                else
+                {
+                    break; // Chain is broken
+                }
+            }
+            
+            return count == winLength;
+        }
 
         public void Display()
         {
@@ -77,14 +126,14 @@ namespace LineUp
                 for (int col = 0; col < Columns; col++)
                 {
                     if (grid[row, col] == null)
-                        Console.Write("|   "); 
+                        Console.Write("|   ");
                     else
-                        Console.Write("| " + grid[row, col].Symbol + " "); 
+                        Console.Write("| " + grid[row, col].Symbol + " ");
                 }
                 Console.WriteLine("|");
             }
 
-            Console.WriteLine($"\nWin condition: Connect {WinCondition} discs");
+            Console.WriteLine($"\nWin condition: Connect {WinConditionDisc} discs");
         }
     }
 
