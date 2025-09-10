@@ -32,7 +32,7 @@ namespace LineUp
                     return row;
                 }
             }
-            return -1; // Column is full
+            return -1; 
         }
         public bool PlaceDisc(int column, Disc disc)
         {
@@ -47,12 +47,49 @@ namespace LineUp
                 if (grid[row, column] == null)
                 {
                     grid[row, column] = disc;
+
+                    if (disc.Type == DiscType.Boring)
+                    {
+                        Display();
+                        ApplyBoringEffect(column);
+                    }
+                    else if (disc.Type == DiscType.Magnetic)
+                    {
+                        Display();
+                        //ApplyMagneticEffect(column, disc.PlayerNumber);
+                        Display(); 
+                    }
+                    else
+                    {
+                        Display();
+                    }
+                    
                     return true;
                 }
             }
 
             Console.WriteLine("Column is full. Please choose another column.");
             return false;
+        }
+
+        private void ApplyBoringEffect(int column)
+        {
+            int boringDiscPlayer = 0;
+            for (int row = 0; row < Rows; row++)
+            {
+                if (grid[row, column] != null && grid[row, column].Type == DiscType.Boring)
+                {
+                    boringDiscPlayer = grid[row, column].PlayerNumber;
+                    break;
+                }
+            }
+            
+            for (int row = 0; row < Rows; row++)
+            {
+                grid[row, column] = null;
+            }
+            
+            grid[Rows - 1, column] = new Disc(boringDiscPlayer, DiscType.Ordinary);
         }
 
         public bool IsFull()
@@ -101,7 +138,6 @@ namespace LineUp
                 int row = startRow + (i * deltaRow);
                 int col = startCol + (i * deltaCol);
                 
-                // Check if position is valid and has the same player's disc
                 if (row >= 0 && row < Rows && col >= 0 && col < Columns &&
                     grid[row, col] != null && grid[row, col].PlayerNumber == player)
                 {
@@ -109,7 +145,7 @@ namespace LineUp
                 }
                 else
                 {
-                    break; // Chain is broken
+                    break;
                 }
             }
             

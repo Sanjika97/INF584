@@ -24,6 +24,7 @@ namespace LineUp
         {
             do
             {
+                grid.Display();
                 int currentPlayerNum = PlayerTurn();
 
                 Console.WriteLine($"Player {currentPlayerNum}'s turn");
@@ -73,7 +74,7 @@ namespace LineUp
 
                 Disc newDisc = new Disc(currentPlayerNum, discType);
                 grid.PlaceDisc(column, newDisc);
-                grid.Display();
+                
 
                 turnCounter++;
             } while (!grid.EndCondition() && !grid.IsFull());
@@ -84,7 +85,8 @@ namespace LineUp
             }
             else
             {
-                Console.WriteLine($"Player {PlayerTurn()} wins!");
+                int winner = PlayerTurn() == 1 ? 2 : 1;
+                Console.WriteLine($"Player {winner} wins!");
             }
         }
     }
