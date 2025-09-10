@@ -32,13 +32,13 @@ namespace LineUp
                 {
                     Console.Write($"Enter column number (1-{grid.Columns}): ");
                     string input = Console.ReadLine();
-                    
+
                     if (int.TryParse(input, out column))
                     {
-                        column--; 
+                        column--;
                         if (column >= 0 && column < grid.Columns)
                         {
-                            break; 
+                            break;
                         }
                     }
                     Console.WriteLine("Invalid column. Try again.");
@@ -70,13 +70,22 @@ namespace LineUp
                         Console.WriteLine("Invalid disc type. Use o, b, or m.");
                     }
                 } while (true);
-                
+
                 Disc newDisc = new Disc(currentPlayerNum, discType);
                 grid.PlaceDisc(column, newDisc);
                 grid.Display();
 
                 turnCounter++;
             } while (!grid.EndCondition() && !grid.IsFull());
+
+            if (grid.IsFull() && !grid.EndCondition())
+            {
+                Console.WriteLine("The game is a draw!");
+            }
+            else
+            {
+                Console.WriteLine($"Player {PlayerTurn()} wins!");
+            }
         }
     }
 
