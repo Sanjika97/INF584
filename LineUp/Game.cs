@@ -82,6 +82,7 @@ namespace LineUp
             // After the while loop ends
             if (grid.EndCondition())
             {
+                int winner = PlayerTurn() == 1 ? 2 : 1;
                 Console.WriteLine($"Player {PlayerTurn()} wins!");
             }
             else if (grid.IsFull())
