@@ -24,6 +24,7 @@ namespace LineUp
         {
             do
             {
+                grid.Display();
                 int currentPlayerNum = PlayerTurn();
 
                 Console.WriteLine($"Player {currentPlayerNum}'s turn");
@@ -32,13 +33,13 @@ namespace LineUp
                 {
                     Console.Write($"Enter column number (1-{grid.Columns}): ");
                     string input = Console.ReadLine();
-                    
+
                     if (int.TryParse(input, out column))
                     {
-                        column--; 
+                        column--;
                         if (column >= 0 && column < grid.Columns)
                         {
-                            break; 
+                            break;
                         }
                     }
                     Console.WriteLine("Invalid column. Try again.");
@@ -70,13 +71,23 @@ namespace LineUp
                         Console.WriteLine("Invalid disc type. Use o, b, or m.");
                     }
                 } while (true);
-                
+
                 Disc newDisc = new Disc(currentPlayerNum, discType);
                 grid.PlaceDisc(column, newDisc);
                 grid.Display();
 
                 turnCounter++;
             } while (!grid.EndCondition() && !grid.IsFull());
+            
+            // After the while loop ends
+            if (grid.EndCondition())
+            {
+                Console.WriteLine($"Player {PlayerTurn()} wins!");
+            }
+            else if (grid.IsFull())
+            {
+                Console.WriteLine("It's a tie! The grid is full.");
+            }
         }
     }
 

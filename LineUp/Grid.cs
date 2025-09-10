@@ -101,7 +101,6 @@ namespace LineUp
                 int row = startRow + (i * deltaRow);
                 int col = startCol + (i * deltaCol);
                 
-                // Check if position is valid and has the same player's disc
                 if (row >= 0 && row < Rows && col >= 0 && col < Columns &&
                     grid[row, col] != null && grid[row, col].PlayerNumber == player)
                 {
@@ -109,7 +108,7 @@ namespace LineUp
                 }
                 else
                 {
-                    break; // Chain is broken
+                    break; 
                 }
             }
             
