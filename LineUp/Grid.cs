@@ -56,8 +56,7 @@ namespace LineUp
                     else if (disc.Type == DiscType.Magnetic)
                     {
                         Display();
-                        //ApplyMagneticEffect(column, disc.PlayerNumber);
-                        Display(); 
+                        ApplyMagneticEffect(column, disc.PlayerNumber); 
                     }
                     else
                     {
@@ -90,6 +89,39 @@ namespace LineUp
             }
             
             grid[Rows - 1, column] = new Disc(boringDiscPlayer, DiscType.Ordinary);
+        }
+
+        private void ApplyMagneticEffect(int column, int playerNumber)
+        {
+            int magneticDiscRow = -1;
+            for (int row = 0; row < Rows; row++)
+            {
+                if (grid[row, column] != null && grid[row, column].Type == DiscType.Magnetic)
+                {
+                    magneticDiscRow = row;
+                    break;
+                }
+            }
+            
+            
+            int targetDiscRow = -1;
+            for (int row = magneticDiscRow + 1; row < Rows; row++)
+            {
+                if (grid[row, column] != null && grid[row, column].PlayerNumber == playerNumber && grid[row, column].Type == DiscType.Ordinary)
+                {
+                    targetDiscRow = row;
+                    break; 
+                }
+            }
+            
+            if (targetDiscRow != -1 && targetDiscRow != magneticDiscRow + 1)
+            {
+                Disc temp = grid[targetDiscRow - 1, column];
+                grid[targetDiscRow - 1, column] = grid[targetDiscRow, column];
+                grid[targetDiscRow, column] = temp;  
+            }
+            
+            grid[magneticDiscRow, column] = new Disc(playerNumber, DiscType.Ordinary);
         }
 
         public bool IsFull()
